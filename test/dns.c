@@ -5,13 +5,12 @@ LAB 1
 Edit this file ONLY!
 
 *************************************************************************/
-
 #include "dns.h" 
 #include <stdio.h> 
 #include <malloc.h> 
 #include <string.h> 
 
-#define DNS_SIZE 60000 
+#define DNS_SIZE 30000 
 
 typedef struct List {
 	char* host_name;
@@ -40,10 +39,9 @@ void LoadHostsFile(DNSHandle hDNS, const char* hostsFilePath)
 	FILE* file;
 	file = fopen(hostsFilePath, "r");
 	if (file == NULL)
-		return 1;
+		return;
 
-	while (!feof(file))
-	{
+	while (!feof(file)) {
 		char hostName[201];
 		unsigned int ip1 = 0, ip2 = 0, ip3 = 0, ip4 = 0;
 
@@ -52,11 +50,9 @@ void LoadHostsFile(DNSHandle hDNS, const char* hostsFilePath)
 		//IPADDRESS IP_= ip1 * 256 * 256 * 256 + ip2 * 256 * 256 + ip3 * 256 + ip4;
 
 		int uHostNameLength = strlen(hostName);
-		const char* host_name = (char*)malloc(uHostNameLength + 1);//-> 
+		char* host_name = (char*)malloc(uHostNameLength + 1); 
 		strcpy(host_name, hostName);
-
-		LItem **e = &((LItem**)hDNS)[hash(hostName)];
-
+		LItem **e = &((LItem**)hDNS)[hash(host_name)];
 		while (*e != NULL) {
 			e = &(*e)->next;
 		}
@@ -64,7 +60,6 @@ void LoadHostsFile(DNSHandle hDNS, const char* hostsFilePath)
 		(*e)->host_address = IP_;
 		(*e)->host_name = host_name;
 		(*e)->next = NULL;
-		//push element end 
 	}
 	fclose(file);
 }
@@ -86,12 +81,10 @@ void ShutdownDNS(DNSHandle hDNS)
 IPADDRESS DnsLookUp(DNSHandle hDNS, const char* hostName)
 {
 	LItem *item = ((LItem**)hDNS)[hash(hostName)];
-	while (item != NULL)
-	{
+	while (item != NULL) {
 		if (!strcmp(item->host_name, hostName))
 			return item->host_address;
 		item = item->next;
 	}
-
 	return INVALID_IP_ADDRESS;
 }
