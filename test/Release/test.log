@@ -1,0 +1,11 @@
+﻿  dns.c
+dns.c(54): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+dns.c(40): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note:  см. объявление "fopen"
+dns.c(83): warning C4090: функция: разные квалификаторы "const"
+  Создание кода
+  All 17 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+Main.Release.lib(main.obj) : warning LNK4099: "test.pdb" PDB не найден с "Main.Release.lib(main.obj)" или на "D:\System Programming\lab_1_DNS_vs2015\test\Release\test.pdb"; компоновка объекта выполняется как при отсутствии отладочных данных
+  test.vcxproj -> D:\System Programming\lab_1_DNS_vs2015\test\Release\test.exe
+  test.vcxproj -> D:\System Programming\lab_1_DNS_vs2015\test\Release\test.pdb (Full PDB)

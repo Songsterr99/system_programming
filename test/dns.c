@@ -31,7 +31,7 @@ int hash(char *str) // hash function djb2
 
 DNSHandle InitDNS()
 {
-	return (DNSHandle)calloc(DNS_SIZE, sizeof(LItem));
+	return (DNSHandle)calloc(DNS_SIZE, sizeof(LItem*));
 }
 
 void LoadHostsFile(DNSHandle hDNS, const char* hostsFilePath)
